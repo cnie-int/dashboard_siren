@@ -1,0 +1,231 @@
+/* Reset default browser styles for consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Define harmonious color palette using CSS variables */
+  :root {
+    --primary-color: #ffff;       /* Blue shade */
+    --secondary-color: #4A90E2;     /* Teal shade */
+    --background-color: #ffff;    /* Light gray */
+    --text-color: #4A4A4A;          /* Dark gray */
+    --white-color: #FFFFFF;         /* Pure white */
+  }
+  
+  /* Base body styles */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  /* Dashboard layout styling */
+  .dashboard {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  /* Sidebar styling */
+  .sidebar {
+    width: 250px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 20px;
+    transition: width 0.3s;
+    border: 1px solid #dddddd;
+  }
+  
+  .sidebar .logo {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+  }
+  
+  .sidebar ul li {
+    margin-bottom: 20px;
+  }
+  
+  .sidebar ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+  }
+  
+  /* Sidebar link hover effect */
+  .sidebar ul li a:hover {
+    color: var(--text-color);
+    padding-left: 10px;
+  }
+  
+  .sidebar p {
+    position: relative;
+    top: 50%;
+    color: #bbbbbb;
+}
+
+.sidebar #uf_title {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #111810;
+  font-size: 20px;
+  padding: 4px;
+}
+
+.sidebar #filtros-uf {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  outline: 0;
+  background: #fff;
+  color: var(--text-color);
+  font-size: 16px;
+  border: none;
+  padding: 4px;
+  margin-bottom: 30px;
+}
+
+.sidebar #fx-title {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #111810;
+  font-size: 20px;
+  padding: 4px;
+}
+
+.sidebar #filtros-fx {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  outline: 0;
+  background: #fff;
+  color: var(--text-color);
+  font-size: 16px;
+  border: none;
+  padding: 4px;
+  margin-bottom: 30px;
+}
+
+  /* Main content area styling */
+  .main-content {
+    flex: 1;
+    padding: 40px;
+  }
+  
+  .main-content hr {
+    margin: 10px 0;
+  }
+
+  .botao-info {
+    background-color: #fff;
+    color: #000;
+    padding: 15px 32px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 50px;
+    border: solid #dddddd;
+    position: fixed;
+    top: 3%;
+    right: 2%;
+    cursor: pointer;
+}
+
+.botao-info:hover {
+  background-color: #dddddd;
+}
+
+  /* Header section styling */
+  header h1 {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+
+  header h2 {
+    font-size: 17px;
+    margin-bottom: 5px;
+    color: rgb(142, 142, 147);
+  }
+  
+  /* Widgets section layout */
+  .widgets {
+    display: flex;
+    margin-top: 40px;
+    gap: 20px;
+  }
+  
+  /* Individual widget styling */
+  .widget {
+    background-color: var(--white-color);
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  }
+  
+  .widget h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--text-color);
+  }
+  
+  .widget p {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    color: #4A90E2;
+  }
+  
+  /* Widget hover effect */
+  .widget:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Charts section layout */
+  .charts {
+    display: flex;
+    margin-top: 40px;
+    gap: 20px;
+  }
+  
+  /* Chart container styling */
+  .chart-container {
+    background-color: var(--white-color);
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .widgets, .charts {
+        flex-direction: column;
+    }
+  
+    .sidebar {
+        width: 60px;
+    }
+  
+    .sidebar .logo,
+    .sidebar ul li a {
+        display: none;
+    }
+  }
+
+.assin {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to right, #fff, #fff);
+    padding: 10px 10px;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 1;
+}
+
+.assin .assin-icons {
+    display: flex;
+    height: 50px;
+}
