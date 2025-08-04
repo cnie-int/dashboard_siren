@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nowcast</title>
+
+  <!-- Links para os arquivos CSS -->
+  <link rel="stylesheet" href="./src/styles/styles.css">
+
+  <!-- Biblioteca Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Utils JavaScript -->
+  <script src="./src/js/utils.js" defer></script>
+</head>
+
+<body>
+  <!-- Dashborad container -->
+  <div class="dashboard">
+    <!-- Navigation sidebar -->
+    <nav class="sidebar">
+      <h2 class="logo">Dashboard</h2>
+
+      <form action="#">
+        <label id="uf_title" for="uf">Unidade da Federação</label>
+        <select id="filtros-uf" name="filtros_uf" required>
+          <option value="" disabled selected>Selecione uma UF</option>
+          <option value="ac">Acre</option>
+          <option value="al">Alagoas</option>
+          <option value="ap">Amapá</option>
+          <option value="am">Amazonas</option>
+          <option value="ba">Bahia</option>
+          <option value="ce">Ceará</option>
+          <option value="df">Distrito Federal</option>
+          <option value="es">Espírito Santo</option>
+          <option value="go">Goiás</option>
+          <option value="ma">Maranhão</option>
+          <option value="mt">Mato Grosso</option>
+          <option value="ms">Mato Grosso do Sul</option>
+          <option value="mg">Minas Gerais</option>
+          <option value="pa">Pará</option>
+          <option value="pb">Paraíba</option>
+          <option value="pr">Paraná</option>
+          <option value="pe">Pernambuco</option>
+          <option value="pi">Piauí</option>
+          <option value="rj">Rio de Janeiro</option>
+          <option value="rn">Rio Grande do Norte</option>
+          <option value="rs">Rio Grande do Sul</option>
+          <option value="ro">Rondônia</option>
+          <option value="rr">Roraima</option>
+          <option value="sc">Santa Catarina</option>
+          <option value="sp">São Paulo</option>
+          <option value="se">Sergipe</option>
+          <option value="to">Tocantins</option>
+        </select>
+      </form>
+
+      <form action="#">
+        <label id="fx-title" for="fx-etaria">Faixa etária</label>
+        <select id="filtros-fx" name="filtros_fx-etaria" required>
+          <option value="" disabled selected>Selecione uma faixa</option>
+          <option value="menor que 19">menor que 19</option>
+          <option value="20 a 39">20 a 39</option>
+          <option value="40 a 59">40 a 59</option>
+          <option value="60 a 69">60 a 69</option>
+          <option value="70 a 79">70 a 79</option>
+          <option value="80 ou mais">80 ou mais</option>
+        </select>
+      </form>
+
+      <h3><a href="#">Comparativo/UF</a></h3>
+
+      <h3><a href="#">Análise Espacial</a></h3>
+
+      <!-- Data de Atualização -->
+      <p id="dataAtualizacao">Atualização:</p>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <!-- header Section -->
+      <header>
+        <h1>Modelagem de Dados da Síndrome Gripal pela Covid-19</h1>
+        <h2>Estimativas com Nowcasting</h2>
+        <hr>
+
+        <!-- Botão Info -->
+        <a href="./pages/infos.html" target="_blank" class="botao-info">Informações</a>
+      </header>
+
+      <!-- Widgets Section -->
+      <section class="widgets">
+        <!-- Widget 1 -->
+        <div class="widget">
+          <h3>Total de casos</h3>
+          <p>2.000</p>
+        </div>
+        <!-- Widget 2 -->
+        <div class="widget">
+          <h3>Casos no último mês</h3>
+          <p>34,8</p>
+        </div>
+        <!-- Widget 3 -->
+        <div class="widget">
+          <h3>Atraso Médio (dias)</h3>
+          <p>31,2</p>
+        </div>
+      </section>
+
+      <!-- Chart Sections -->
+      <section class="charts">
+        <!-- Nowcast Chart Container -->
+        <div class="chart-container">
+          <h3>Nowcasting - Bayesiano</h3>
+          <canvas id="nowcastChart"></canvas>
+        </div>
+
+        <!-- Forecast Chart Container -->
+        <div class="chart-container">
+          <h3>Forecasting</h3>
+          <canvas id="forecastChart"></canvas>
+        </div>
+      </section>
+    </div>
+  </div>
+
+
+
+  <!-- Footer -->
+  <footer class="assin">
+    <div class="assin-icons">
+      <img src="./src/assets/icons/barra de assinatura.png" alt="Assinatura">
+    </div>
+  </footer>
+
+  <!-- Link para o arquivo JS -->
+  <script src="./src/js/charts.js"></script>
+
+</body>
+
+</html>
