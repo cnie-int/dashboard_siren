@@ -2,141 +2,200 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nowcast</title>
 
-  <!-- Links para os arquivos CSS -->
-  <link rel="stylesheet" href="./src/styles/styles.css">
+  <!-- Estilos -->
+  <link rel="stylesheet" href="src/styles/styles.css" />
 
-  <!-- Biblioteca Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Utils JavaScript -->
-  <script src="./src/js/utils.js" defer></script>
+  <!-- Bibliotecas -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+
+  <!-- Scripts locais -->
+  <script src="src/js/utils.js" defer></script>
+  <script src="src/js/charts.js" defer></script>
+  <script src="src/js/tables.js" defer></script>
 </head>
 
 <body>
-  <!-- Dashborad container -->
+
   <div class="dashboard">
-    <!-- Navigation sidebar -->
-    <nav class="sidebar">
-      <h2 class="logo">Dashboard</h2>
+    
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="container-logo">
+        <h2 class="logo">CNIE</h2>
+      </div>
 
-      <form action="#">
-        <label id="uf_title" for="uf">Unidade da Federação</label>
-        <select id="filtros-uf" name="filtros_uf" required>
-          <option value="" disabled selected>Selecione uma UF</option>
-          <option value="ac">Acre</option>
-          <option value="al">Alagoas</option>
-          <option value="ap">Amapá</option>
-          <option value="am">Amazonas</option>
-          <option value="ba">Bahia</option>
-          <option value="ce">Ceará</option>
-          <option value="df">Distrito Federal</option>
-          <option value="es">Espírito Santo</option>
-          <option value="go">Goiás</option>
-          <option value="ma">Maranhão</option>
-          <option value="mt">Mato Grosso</option>
-          <option value="ms">Mato Grosso do Sul</option>
-          <option value="mg">Minas Gerais</option>
-          <option value="pa">Pará</option>
-          <option value="pb">Paraíba</option>
-          <option value="pr">Paraná</option>
-          <option value="pe">Pernambuco</option>
-          <option value="pi">Piauí</option>
-          <option value="rj">Rio de Janeiro</option>
-          <option value="rn">Rio Grande do Norte</option>
-          <option value="rs">Rio Grande do Sul</option>
-          <option value="ro">Rondônia</option>
-          <option value="rr">Roraima</option>
-          <option value="sc">Santa Catarina</option>
-          <option value="sp">São Paulo</option>
-          <option value="se">Sergipe</option>
-          <option value="to">Tocantins</option>
-        </select>
-      </form>
+      <div class="container-navegacao">
+        <ul>
+          <li>
+            <a href="#" class="menu-link" aria-label="Página inicial">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
+                role="img">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+              </svg>
+              Home
+            </a>
+          </li>
 
-      <form action="#">
-        <label id="fx-title" for="fx-etaria">Faixa etária</label>
-        <select id="filtros-fx" name="filtros_fx-etaria" required>
-          <option value="" disabled selected>Selecione uma faixa</option>
-          <option value="menor que 19">menor que 19</option>
-          <option value="20 a 39">20 a 39</option>
-          <option value="40 a 59">40 a 59</option>
-          <option value="60 a 69">60 a 69</option>
-          <option value="70 a 79">70 a 79</option>
-          <option value="80 ou mais">80 ou mais</option>
-        </select>
-      </form>
+          <li>
+            <a href="/pages/trend_level.html" class="menu-link" aria-label="Tendência e Níveis">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
+                role="img">
+                <path d="M4 19h16v2H4v-2zm1-4.5l4-4 3 3 5-5 3 3v2l-3-3-5 5-3-3-4 4v-2z" />
+              </svg>
+              Tendência e Níveis
+            </a>
+          </li>
 
-      <h3><a href="#">Comparativo/UF</a></h3>
+          <li>
+            <a href="#" class="menu-link" aria-label="Informações">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
+                role="img">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 15h-1v-6h2v6h-1zm0-8h-1V7h2v2h-1z" />
+              </svg>
+              Informações
+            </a>
+          </li>
 
-      <h3><a href="#">Análise Espacial</a></h3>
+          <!-- Separador estilizado -->
+          <hr class="menu-separator" />
 
-      <!-- Data de Atualização -->
-      <p id="dataAtualizacao">Atualização:</p>
-    </nav>
+          <!-- Submenu com filtro -->
+          <li class="has-submenu">
+            <a href="#" class="toggle-submenu" aria-label="Filtro UF">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
+                role="img">
+                <path d="M3 4h18v2l-7 8v6l-4 2v-8L3 6V4z" />
+              </svg>
+              Filtro UF
+            </a>
 
-    <!-- Main Content Area -->
-    <div class="main-content">
-      <!-- header Section -->
-      <header>
-        <h1>Modelagem de Dados da Síndrome Gripal pela Covid-19</h1>
-        <h2>Estimativas com Nowcasting</h2>
-        <hr>
+            <div class="submenu">
+              <form action="#">
+                <label for="selectUF">Unidade da Federação</label>
+                <select id="selectUF" name="selectUF" required>
+                  <option value="BR" selected>Todas</option>
+                  <option value="AC">Acre</option>
+                  <option value="AL">Alagoas</option>
+                  <option value="AP">Amapá</option>
+                  <option value="AM">Amazonas</option>
+                  <option value="BA">Bahia</option>
+                  <option value="CE">Ceará</option>
+                  <option value="DF">Distrito Federal</option>
+                  <option value="ES">Espírito Santo</option>
+                  <option value="GO">Goiás</option>
+                  <option value="MA">Maranhão</option>
+                  <option value="MT">Mato Grosso</option>
+                  <option value="MS">Mato Grosso do Sul</option>
+                  <option value="MG">Minas Gerais</option>
+                  <option value="PA">Pará</option>
+                  <option value="PB">Paraíba</option>
+                  <option value="PR">Paraná</option>
+                  <option value="PE">Pernambuco</option>
+                  <option value="PI">Piauí</option>
+                  <option value="RJ">Rio de Janeiro</option>
+                  <option value="RN">Rio Grande do Norte</option>
+                  <option value="RS">Rio Grande do Sul</option>
+                  <option value="RO">Rondônia</option>
+                  <option value="RR">Roraima</option>
+                  <option value="SC">Santa Catarina</option>
+                  <option value="SP">São Paulo</option>
+                  <option value="SE">Sergipe</option>
+                  <option value="TO">Tocantins</option>
+                </select>
+              </form>
+            </div>
+          </li>
+        </ul>
+      </div>
 
-        <!-- Botão Info -->
-        <a href="./pages/infos.html" target="_blank" class="botao-info">Informações</a>
+      <p id="dataAtualizacao">Acessado em: <span></span></p>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main class="content">
+      <header class="titulo">
+        <h1>Nowcast da Síndrome Gripal pela Covid-19</h1>
+        <hr />
       </header>
 
-      <!-- Widgets Section -->
-      <section class="widgets">
-        <!-- Widget 1 -->
-        <div class="widget">
-          <h3>Total de casos</h3>
-          <p>2.000</p>
-        </div>
-        <!-- Widget 2 -->
-        <div class="widget">
-          <h3>Casos no último mês</h3>
-          <p>34,8</p>
-        </div>
-        <!-- Widget 3 -->
-        <div class="widget">
-          <h3>Atraso Médio (dias)</h3>
-          <p>31,2</p>
-        </div>
-      </section>
-
-      <!-- Chart Sections -->
-      <section class="charts">
-        <!-- Nowcast Chart Container -->
-        <div class="chart-container">
-          <h3>Nowcasting - Bayesiano</h3>
-          <canvas id="nowcastChart"></canvas>
+      <section class="dashboard-grid">
+        <!-- Linha 1 -->
+        <div class="card chart-one">
+          <h2>Série Temporal com Nowcast</h2>
+          <canvas id="grafico1"></canvas>
         </div>
 
-        <!-- Forecast Chart Container -->
-        <div class="chart-container">
-          <h3>Forecasting</h3>
-          <canvas id="forecastChart"></canvas>
+        <div class="card table-one">
+          <h2>Tabela - Estimativa por Nowcast</h2>
+          <table id="tabela-dados">
+            <thead>
+              <tr>
+                <th>Semana Epi.</th>
+                <th>Casos</th>
+                <th>Nowcast</th>
+                <th>IC95% inferior</th>
+                <th>IC95% superior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- preenchido via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Linha 2 -->
+        <div class="card chart-two">
+          <h2>Limiares</h2>
+          <canvas id="grafico2"></canvas>
+        </div>
+
+        <!-- Pequenos gráficos -->
+        <div class="small-charts-grid">
+          <div class="card-small">
+            <h3>Menor que 20 anos</h3>
+            <div class="chart-container">
+              <canvas id="grafico3"></canvas>
+            </div>
+          </div>
+          <div class="card-small">
+            <h3>20 a 39 anos</h3>
+            <div class="chart-container">
+              <canvas id="grafico4"></canvas>
+            </div>
+          </div>
+          <div class="card-small">
+            <h3>40 a 59 anos</h3>
+            <div class="chart-container">
+              <canvas id="grafico5"></canvas>
+            </div>
+          </div>
+          <div class="card-small">
+            <h3>60 a 69 anos</h3>
+            <div class="chart-container">
+              <canvas id="grafico6"></canvas>
+            </div>
+          </div>
+          <div class="card-small">
+            <h3>70 a 79 anos</h3>
+            <div class="chart-container">
+              <canvas id="grafico7"></canvas>
+            </div>
+          </div>
+          <div class="card-small">
+            <h3>80 anos e mais</h3>
+            <div class="chart-container">
+              <canvas id="grafico8"></canvas>
+            </div>
+          </div>
         </div>
       </section>
-    </div>
+    </main>
   </div>
-
-
-
-  <!-- Footer -->
-  <footer class="assin">
-    <div class="assin-icons">
-      <img src="./src/assets/icons/barra de assinatura.png" alt="Assinatura">
-    </div>
-  </footer>
-
-  <!-- Link para o arquivo JS -->
-  <script src="./src/js/charts.js"></script>
-
 </body>
 
 </html>
